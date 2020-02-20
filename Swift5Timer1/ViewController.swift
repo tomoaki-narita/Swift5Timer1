@@ -30,6 +30,17 @@ class ViewController: UIViewController {
         
         stopButton.isEnabled = true
         
+        for i in 0..<5{
+        
+            print(i)
+            
+            let image = UIImage(named: "\(i)")
+            imageArray.append(image!)
+        
+        }
+        
+        imageView.image = UIImage(named: "0")
+        
     }
     
     func startTimer(){
@@ -40,6 +51,10 @@ class ViewController: UIViewController {
     @objc func timerUpdate(){
         
         count = count + 1
+        
+        if count > 4 {
+            count = 0
+        }
         imageView.image = imageArray[count]
         
         
@@ -47,14 +62,25 @@ class ViewController: UIViewController {
 
     @IBAction func start(_ sender: Any  ) {
         
-        startButton.isEnabled = true
+        startButton.isEnabled = false
+        stopButton.isEnabled = true
+        
+        startTimer()
+        
+        
         
     }
     
     
     @IBAction func stop(_ sender: Any) {
         
-        startButton.isEnabled = false
+        startButton.isEnabled = true
+        stopButton.isEnabled = false
+
+        
+        timer.invalidate()
+        
+        
     }
     
     

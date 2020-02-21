@@ -28,26 +28,34 @@ class ViewController: UIViewController {
         
         count = 0
         
-        stopButton.isEnabled = true
+        //stopBUttonを押せなくする isEnabledはプロパティー
+        stopButton.isEnabled = false
         
+        
+        
+        //0,1,2,3,4を繰り返す
         for i in 0..<5{
-        
+            
             print(i)
             
             let image = UIImage(named: "\(i)")
             imageArray.append(image!)
         
         }
-        
+        //0番目の画像を表示
         imageView.image = UIImage(named: "0")
         
     }
     
+    //メソッド
     func startTimer(){
+        
+        //タイマーを回す　0.2秒ごとにあるメソッドを呼ぶ
         timer = Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(timerUpdate), userInfo: nil, repeats: true)
         
     }
     
+    //0.2秒ごとに呼ばれる
     @objc func timerUpdate(){
         
         count = count + 1
@@ -62,7 +70,10 @@ class ViewController: UIViewController {
 
     @IBAction func start(_ sender: Any  ) {
         
+        //startBUttonを押した時に、startButtonを押せなくする
         startButton.isEnabled = false
+        
+        //stopButtonが押せるようになる
         stopButton.isEnabled = true
         
         startTimer()
@@ -74,10 +85,13 @@ class ViewController: UIViewController {
     
     @IBAction func stop(_ sender: Any) {
         
+        //startButtonを押せるようにする
         startButton.isEnabled = true
+        
+        //stopButtonが押せなくする
         stopButton.isEnabled = false
 
-        
+        //タイマーを止める
         timer.invalidate()
         
         
